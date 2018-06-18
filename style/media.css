@@ -1,0 +1,14 @@
+/* @media screen and (max-width: 640px) {
+    .menu {
+       width: 100%;
+    }
+    
+    .menu ul {
+       float: left;
+       font-size: 0.8em;
+    }
+    
+    .menu li:first-child {
+       margin-left: 0;
+    }
+    } */
