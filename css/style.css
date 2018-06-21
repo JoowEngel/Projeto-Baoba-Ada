@@ -34,7 +34,7 @@ body, html {
 a {
   color: #FFE8EF;
   text-decoration: none;
-  /* font-size: 19px; */
+  font-size: 19px;
 }
 
 a:hover{
@@ -310,14 +310,27 @@ a:hover{
 /* --------------------------------SENTICTION 1-INTRO-------------------------------------------- */
 
 #section1 {
-  background-color: rgba(55, 37, 120, 0.79);
+  background-image: url("https://cdn.dribbble.com/users/988852/screenshots/3175945/landscape_hills.gif");
+  background-size: cover;
+  background-position:center center ;
+  position: relative;
+  background-attachment: fixed;
+ 
 }
+
+.mask{
+  background-color:rgba(55, 37, 120, 0.79);
+  height: 100%;
+  width: 100%;
+  position:absolute;
+}
+
+
 
 .brand{
   display: flex;
-  margin: 0 auto;
-  width: 80%;
-
+  margin: 30px auto;
+  width: 64%;
 }
 
 
@@ -353,17 +366,15 @@ span{
 }
 
 .stage{
-  margin-top: 52px;
-  margin-bottom: 70px;
+  margin-top: -23px;
+  margin-bottom: 58px;
 }
 
 .btt-titulo{
-  /* font-size: 200px; */
-  width: 360px;
-  font-family:  "Ubuntu";
-  font-weight:  200;
-  font-size: 25px;
-  /* font-style: inherit; */
+  width: 280px;
+  font-family: "Ubuntu";
+  font-weight: 200;
+  font-size: 20px;
 }
 
 
@@ -398,18 +409,34 @@ span{
 /* --------------------------------SENTICTION 2-PROJETO------------------------------------------ */
 
 #section2 {
-  background-color: #ECC334;
+  background-image: url("../imgs/bg.projeto.png");
+  background-size: cover;
+  background-position:center center ;
+  position: relative;
+  background-attachment: fixed;
+ 
 }
+
+.yellowmask{
+  background-color:rgba(236, 196, 50, 0.7);
+  height: 100%;
+  width: 100%;
+  position:absolute;
+}
+
 
 /* --------------------------------------------------------------------------------------------- */ 
 
 /* -------------------------SENTICTION 3-MULHERES DA HISTÓRIA----------------------------------- */
 
 #section3 {
-  background-color: #E83B35;
+  background-image: url("../img/bg.mulheres.png");
+  background-size: cover;
+  background-position:center center ;
+  position: relative;
+  background-attachment: fixed;
+ 
 }
-
-
 
 
 /* --------------------------------------------------------------------------------------------- */ 
@@ -467,15 +494,15 @@ span{
 }
 
 .card{
-  width: 142%;
-  height: 500px;
+  /* width: 142%; */
+  height: 376px;
   position: relative;
-  background-color: #dfffd2;
+  background-color: #61B241;
   margin: 1.13%;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: 1s;
   -webkit-transition: 0.5s;
-  cursor: pointer; 
+  cursor: pointer;
   flex: 1 1 auto;
 }
 
@@ -487,10 +514,10 @@ span{
 
 
 .card_img{
-  width:100%;
-  height: 200px;
+  width: 42%;
+  height: 100%;
   position: relative;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 8px 8px;
   background-size: cover;
   background-position:center center;
   background-color: #20e6b3;
@@ -501,7 +528,7 @@ span{
 .card1{
   background-image: url("../img/cassia.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 210%;
   display: grid;
 }
 .card2{
@@ -519,12 +546,16 @@ span{
 /* --------------------------------SENTICTION 5-GALERIA-------------------------------------------- */
 
 #section5 {
-  background-color: #3D1C14;
+  background-image: url("../img/bg.galeria.png");
+  background-size: cover;
+  background-position:center center ;
+  position: relative;
+  background-attachment: fixed;
+ 
 }
-
 /* GALERIA */
 
-.container{
+.container-fluid{
   margin: 0 auto;
   max-width: 100%;
 }
@@ -553,7 +584,11 @@ span{
 
 /* --------------------------------SENTICTION 6- CONTATO-------------------------------------------- */
 #section6 {
-  background-color: #6D69A5;
+  background-image: url("../img/bg.contato.png");
+  background-size: cover;
+  background-position:center center ;
+  position: relative;
+  background-attachment: fixed;
 }
 
 /* -------FORMULARIO---------- */
@@ -683,7 +718,7 @@ span{
  margin:0 auto;
 }
 
-    h1{font-size: 2em; padding: 20px 0;}
+    h1{font-size: 2em;padding: 10px 0;}
     p{
       font-size: 12px;
       font-weight: 100;

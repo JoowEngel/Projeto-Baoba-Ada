@@ -1,894 +1,345 @@
+@import 'bourbon'; // http://bourbon.io/
 
-/* ----------------------------------------HTML-------------------------------------------------- */
+@import '../partials/variables'; // colors, fonts etc...
+
+@import '../partials/mixins'; // custom mixins
+
+@import '../partials/layout'; // responsive grid and media queries
+
+/* -------------------------------- 
 
 
-*{
-	font-family: 'Ubuntu', sans-serif;
-   font-family: 'Barrio', cursive;
-  }
-  
-  html * {
-	-webkit-font-smoothing: inherit;
+
+
+
+
+
+
+
+
+Primary style
+
+-------------------------------- */
+
+html * {
+	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-  }
-  
-  *, *:after, *:before {
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-  }
-  
-  body {
-	font-size: 100%;
-	font-family: "Ubuntu", sans-serif;
-	color: #f8f9fa;
-	background-color: white;
-  }
-  
-  body, html {
-	height: 100%;
-	width:  100%;
-	text-align: center;
-  }
-  
-  a {
-	color: #FFE8EF;
-	text-decoration: none;
-	/* font-size: 19px; */
-  }
-  
-  a:hover{
-	text-decoration: none;
-	list-style: none;
-	color: #ECC334;
-  }
-  
-  /* --------------------------------SENTICTIONS------------------------------------------------- */
-  
-  .cd-section {
-	min-height: 73%;
+}
+
+*, *:after, *:before {
+	@include box-sizing(border-box);
+}
+
+
+.cd-img-replace { /* replace text with a background-image */
+	display: inline-block;
+	overflow: hidden;
+	text-indent: 100%;
+	white-space: nowrap;
+}
+
+/* -------------------------------- 
+
+Main components 
+
+-------------------------------- */
+
+.cd-section {
+	min-height: 100%;
 	position: relative;
-	padding: 1em 0;
-  }
-  
-  .cd-section h1, .cd-section p {
-	/* position: absolute; */
-	/* left: 50%; */
-	/* top: 120%; */
-	/* bottom: auto; */
-	/* right: auto; */
-	/* -webkit-transform: translateX(-50%) translateY(-50%); */
-	-moz-transform: translateX(-50%) translateY(-50%);
-	-ms-transform: translateX(-50%) translateY(-50%);
-	-o-transform: translateX(-50%) translateY(-50%);
-	/* transform: translateX(-50%) translateY(-50%); */
-	/* width: 90%; */
-	/* max-width: 768px; */
-	/* text-align: center; */
-  }
-  .cd-section h1 {
-	/* color: white; */
-	/* font-weight: 300; */
-	/* text-transform: uppercase; */
-	/* font-size: 20px; */
-	/* font-size: 1.25rem; */
-  }
-  
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* ----------------------------------NAVBAR-BOLINHAS-------------------------------------------- */
-  
-  .cd-nav-trigger {
+	padding: 2em 0;
+
+	&:nth-of-type(odd) {
+		background-color: $color-1;
+
+		p {
+			color: lighten($color-1, 30%);
+		}
+	}
+
+	&:nth-of-type(even) {
+		background-color: $color-2;
+
+		p {
+			color: lighten($color-2, 30%);
+		}
+	}
+
+	h1, p {
+		position: absolute;
+		@include center;
+		width: 90%;
+		max-width: $M;
+		text-align: center;
+	}
+
+	h1 {
+		color: $color-4;
+		font-weight: 300;
+		text-transform: uppercase;
+		@include font-size(20px);
+	}
+
+	p {
+		line-height: 1.6;
+	}
+
+	@include MQ(M) {
+		h1 {
+			@include font-size(30px);
+		}
+
+		p {
+			@include font-size(20px);
+			line-height: 2;
+		}
+	}
+}
+
+.cd-scroll-down {
+	position: absolute;
+	@include center(x);
+	bottom: 20px;
+	width: 38px;
+	height: 44px;
+	background: url('../img/cd-arrow-bottom.svg') no-repeat center center;
+}
+
+/* No Touch devices */
+
+.cd-nav-trigger {
 	display: none;
-  }
-  
-  .no-touch #cd-vertical-nav {
+}
+
+.no-touch #cd-vertical-nav {
 	position: fixed;
 	right: 40px;
-	top: 50%;
-	bottom: auto;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
+	@include center(y); // see partials > _mixins.scss
 	z-index: 1;
-  }
-  .no-touch #cd-vertical-nav li {
-	text-align: right;
-  }
-  .no-touch #cd-vertical-nav a {
-	display: inline-block;
-	/* prevent weird movements on hover when you use a CSS3 transformation - webkit browsers */
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
-  }
-  .no-touch #cd-vertical-nav a:after {
-	content: "";
-	display: table;
-	clear: both;
-  }
-  .no-touch #cd-vertical-nav a span {
-	float: right;
-	-webkit-transform: scale(0.6);
-	-moz-transform: scale(0.6);
-	-ms-transform: scale(0.6);
-	-o-transform: scale(0.6);
-	transform: scale(0.6);
-  }
-  .no-touch #cd-vertical-nav a:hover span {
-	-webkit-transform: scale(1);
-	-moz-transform: scale(1);
-	-ms-transform: scale(1);
-	-o-transform: scale(1);
-	transform: scale(1);
-  }
-  .no-touch #cd-vertical-nav a:hover .cd-label {
-	opacity: 1;
-  }
-  .no-touch #cd-vertical-nav a.is-selected .cd-dot {
-	background-color: #fde7ef;
-  }
-  .no-touch #cd-vertical-nav .cd-dot {
-	position: relative;
-	/* we set a top value in order to align the dot with the label. If you change label's font, you may need to change this top value*/
-	top: 8px;
-	height: 16px;
-	z-index: 2;
-	width: 16px;
-	border-radius: 50%;
-	background-color: #6d69a5;
-	border: 1px solid #f8f9fa;
-	-webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
-	-moz-transition: -moz-transform 0.2s, background-color 0.5s;
-	transition: transform 0.2s, background-color 0.5s;
-	-webkit-transform-origin: 50% 50%;
-	-moz-transform-origin: 50% 50%;
-	-ms-transform-origin: 50% 50%;
-	-o-transform-origin: 50% 50%;
-	transform-origin: 50% 50%;
-  }
-  .no-touch #cd-vertical-nav .cd-label {
-	position: relative;
-	margin-right: 10px;
-	padding: .4em .5em;
-	color: #FDE7EF;
-	font-family: "Ubuntu";
-	-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
-	-moz-transition: -moz-transform 0.2s, opacity 0.2s;
-	transition: transform 0.2s, opacity 0.2s;
-	opacity: 0;
-	-webkit-transform-origin: 100% 50%;
-	-moz-transform-origin: 100% 50%;
-	-ms-transform-origin: 100% 50%;
-	-o-transform-origin: 100% 50%;
-	transform-origin: 100% 50%;
-  }
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* ----------------------------------NAVBAR-HAMBURGER-------------------------------------------- */
-  
-  .touch .cd-nav-trigger {
+
+	li {
+		text-align: right;
+	}
+
+	a {
+		display: inline-block;
+		@include clearfix;
+
+		/* prevent weird movements on hover when you use a CSS3 transformation - webkit browsers */
+		@include backface-visibility(hidden);
+		
+		span {
+			float: right;
+			@include transform(scale(.6));
+		}
+
+		&:hover span {
+			@include transform(scale(1)); 
+		}
+
+		&:hover .cd-label {
+			opacity: 1;
+		}
+
+		&.is-selected .cd-dot {
+			background-color: $color-4;
+		}
+	} 
+
+	.cd-dot {
+		position: relative;
+		/* we set a top value in order to align the dot with the label. If you change label's font, you may need to change this top value*/
+		top: 8px;
+		height: 12px;
+		width: 12px;
+		border-radius: 50%;
+		background-color: $color-3;
+		-webkit-transition: -webkit-transform 0.2s, background-color 0.5s;
+		-moz-transition: -moz-transform 0.2s, background-color 0.5s;
+		transition: transform 0.2s, background-color 0.5s;
+		@include transform-origin(50% 50%);	
+	}
+
+	.cd-label {
+		position: relative;
+		margin-right: 10px;
+		padding: .4em .5em;
+		color: $color-4;
+		@include font-size(14px);
+
+		-webkit-transition: -webkit-transform 0.2s, opacity 0.2s;
+		-moz-transition: -moz-transform 0.2s, opacity 0.2s;
+		transition: transform 0.2s, opacity 0.2s;
+		opacity: 0;
+		@include transform-origin(100% 50%);
+	}
+}
+
+/* Touch devices */
+
+.touch .cd-nav-trigger {
 	display: block;
-	justify-content: center;
-	/* text-align: center; */
-	/* align-items: center; */
-	z-index: 1;
+	z-index: 2;
 	position: fixed;
-	bottom: 87%;
+	bottom: 30px;
 	right: 5%;
-	height: 8em;
-	width: 8em;
-	border-radius: 7.25em;
-	background: #ffc107;
-  }
-  .touch .cd-nav-trigger span {
-	position: absolute;
-	height: 3px;
-	width: 18px;
-	background-color: #372578;
-	border-radius: 10%;
-	left: 50%;
-	top: 50%;
-	bottom: auto;
-	right: auto;
-	-webkit-transform: translateX(-50%) translateY(-50%);
-	-moz-transform: translateX(-50%) translateY(-50%);
-	-ms-transform: translateX(-50%) translateY(-50%);
-	-o-transform: translateX(-50%) translateY(-50%);
-	transform: translateX(-50%) translateY(-50%);
-  }
-  .touch .cd-nav-trigger span::before, .touch .cd-nav-trigger span::after {
-	content: '';
-	height: 100%;
-	width: 100%;
-	position: absolute;
-	left: 0;
-	background-color: inherit;
-	border-radius: inherit;
-  }
-  .touch .cd-nav-trigger span::before {
-	top: -9px;
-  }
-  .touch .cd-nav-trigger span::after {
-	bottom: -9px;
-  }
-  
-  .touch #cd-vertical-nav {
+	height: 44px;
+	width: 44px;
+	@include border-radius;
+	background: rgba($color-4, .9);
+
+	span {
+		position: absolute;
+		height: 4px;
+		width: 4px;
+		background-color: $color-1;
+		border-radius: 50%;
+		@include center;
+
+		&::before, &::after {
+			content: '';
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			background-color: inherit;
+			border-radius: inherit;
+		}
+
+		&::before {
+			top: -9px;
+		}
+
+		&::after {
+			bottom: -9px;
+		}
+	}
+}
+
+.touch #cd-vertical-nav {
 	position: fixed;
 	z-index: 1;
-	/* display:  flex; */
-	align-items:  center;
-	text-align: center;
-	right: 11%;
-	justify-content: center;
-	margin-top: 144px;
-	/* bottom: 408px; */
-	width: 82%;
-	height: 24%;
-	/* max-width: 410px; */
-	max-height: 274%;
+	right: 5%;
+	bottom: 30px;
+	width: 90%;
+	max-width: 400px;
+	max-height: 90%;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
-	-webkit-transform-origin: right bottom;
-	-moz-transform-origin: right bottom;
-	-ms-transform-origin: right bottom;
-	-o-transform-origin: right bottom;
-	transform-origin: center bottom;
-	-webkit-transform: scale(0);
-	-moz-transform: scale(0);
-	-ms-transform: scale(0);
-	-o-transform: scale(0);
-	transform: scale(0);
-	-webkit-transition-property: -webkit-transform;
-	-moz-transition-property: -moz-transform;
-	transition-property: transform;
-	-webkit-transition-duration: 0.2s;
-	-moz-transition-duration: 0.2s;
-	transition-duration: 0.2s;
-	border-radius: 1.25em;
-	background-color: #372578f5;
-  }
-  .touch #cd-vertical-nav a {
-	display: block;
-	padding: 1em;
-	text-align: center;
-	border-bottom: 0px solid rgba(62, 57, 71, 0.1);
-	font-family: "Barrio";
-  }
-  .touch #cd-vertical-nav a span:first-child {
-	display: none;
-  }
-  .touch #cd-vertical-nav a.is-selected span:last-child {
-	color: #ffc107;
-  }
-  .touch #cd-vertical-nav.open {
-	-webkit-transform: scale(1);
-	-moz-transform: scale(1);
-	-ms-transform: scale(1);
-	-o-transform: scale(1);
-	transform: scale(1);
-  }
-  .touch #cd-vertical-nav.open + .cd-nav-trigger {
-	background-color: #ECC334;
-  }
-  .touch #cd-vertical-nav.open + .cd-nav-trigger span {
-	background-color: rgba(93, 42, 185, 0);
-  }
-  .touch #cd-vertical-nav.open + .cd-nav-trigger span::before, .touch #cd-vertical-nav.open + .cd-nav-trigger span::after {
-	background-color: #372578;
-	height: 3px;
-	width: 20px;
-	border-radius: 0;
-	
-  }
-  .touch #cd-vertical-nav.open + .cd-nav-trigger span::before {
-	-webkit-transform: rotate(45deg);
-	-moz-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	-o-transform: rotate(45deg);
-	transform: rotate(45deg);
-	top: 1px;
-  }
-  .touch #cd-vertical-nav.open + .cd-nav-trigger span::after {
-	-webkit-transform: rotate(135deg);
-	-moz-transform: rotate(135deg);
-	-ms-transform: rotate(135deg);
-	-o-transform: rotate(135deg);
-	transform: rotate(135deg);
-	bottom: 0;
-  }
-  .touch #cd-vertical-nav li:last-child a {
-	border-bottom: none;
-  }
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  
-  /* --------------------------------SENTICTION 1-INTRO-------------------------------------------- */
-  
-  #section1 {
-	background-color: rgba(55, 37, 120, 0.79);
-  }
-  
-  .brand{
-	display: flex;
-	margin: 0 auto;
-	width: 80%;
-  
-  }
-  
-  
-  /* BOTAO */
-  
-  .letra1{
-	font-size: 160%;
-	color: #ECC334;
-  }
-  
-  .letra2{
-	font-size: 160%;
-	color: #E83B35;
-  }
-  
-  .letra3{
-	font-size: 160%;
-	color: #61B241;
-  }
-  
-  .letra4{
-	font-size: 160%;
-	color: #F681A8;
-  }
-  
-  .letra5{
-	font-size: 160%;
-	color: #6D69A5;
-  }
-  
-  span{
-	font-family: 'Barrio', sans-serif;
-  }
-  
-  .stage{
-	margin-top: 52px;
-	margin-bottom: 70px;
-  }
-  
-  .btt-titulo{
-	/* font-size: 200px; */
-	width: 360px;
-	font-family:  "Ubuntu";
-	font-weight:  200;
-	font-size: 25px;
-	/* font-style: inherit; */
-  }
-  
-  
-  #menu{
-	background-color: transparent;
-	border-color: transparent;
-  }
-  
-  /* SETA */
-  .seta {
-	max-width: 100%;
-  }
-  
-  .cd-scroll-down {
-	position: absolute;
-	left: 50%;
-	right: auto;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	bottom: 20px;
-	width: 38px;
-	height: 44px;
-  }
-  
-  
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* --------------------------------SENTICTION 2-PROJETO------------------------------------------ */
-  
-  #section2 {
-	background-color: #ECC334;
-  }
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* -------------------------SENTICTION 3-MULHERES DA HISTÓRIA----------------------------------- */
-  
-  #section3 {
-	background-color: #E83B35;
-  }
-  
-  
-  
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* --------------------------------SENTICTION 4-IDEALIZADORAS----------------------------------- */
-  
-  #section4 {
-	background-color: #61B241;
-	position:relative;
-	background: linear-gradient(90deg, #61B241, #6D69A5, #372578);
-	background-size: 200% 200%;
-	-webkit-animation:   AnimationName 10s ease infinite;
-	-moz-animation: AnimationName 10s ease infinite;
-	animation: AnimationName 10s ease infinite;
-	display: flex;
-  }
-  
-  .perfil{
-	width: 90%;
-	/* text-align: center; */
-	justify-content:  center;
-	align-items:  center;
-	display: inline-flex;
-	margin:0 auto;
-  }
-  
-  @-webkit-keyframes AnimationName {
-	  0%{background-position:0% 50%}
-	  50%{background-position:100% 50%}
-	  100%{background-position:0% 50%}
-  }
-  @-moz-keyframes AnimationName {
-	  0%{background-position:0% 50%}
-	  50%{background-position:100% 50%}
-	  100%{background-position:0% 50%}
-  }
-  @keyframes AnimationName { 
-	  0%{background-position:0% 50%}
-	  50%{background-position:100% 50%}
-	  100%{background-position:0% 50%}
-  }
-  
-  
-  
-  .cards{
-	width:80%;
-	position:relative;
-	margin-left:auto;
-	margin-right:auto;
-	padding-bottom:200px;
-	display:flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	
-  }
-  
-  .card{
-	width: 142%;
-	height: 500px;
-	position: relative;
-	background-color: #dfffd2;
-	margin: 1.13%;
-	border-radius: 5px;
-	transition: 1s;
-	-webkit-transition: 0.5s;
-	cursor: pointer; 
-	flex: 1 1 auto;
-  }
-  
-  
-  .card:hover{
-	transform: scale(1.05);
-	box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-  }
-  
-  
-  .card_img{
-	width:100%;
-	height: 200px;
-	position: relative;
-	border-radius: 5px 5px 0px 0px;
-	background-size: cover;
-	background-position:center center;
-	background-color: #20e6b3;
-	transition:1s;
-	-webkit-transition:1s;
-  }
-  
-  .card1{
-	background-image: url("../img/cassia.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-  }
-  .card2{
-	
-	background-image: url("../img/thais.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	
-  }
-  
-  
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* --------------------------------SENTICTION 5-GALERIA-------------------------------------------- */
-  
-  #section5 {
-	background-color: #3D1C14;
-  }
-  
-  /* GALERIA */
-  
-  .container{
-	margin: 0 auto;
-	max-width: 100%;
-  }
-  
-  .responsive-image {
-	max-width: 100%;
-  }
-  
-  .cell {
-	margin: 5px;
-  }
-  
-  #figura{
-	  -webkit-filter: grayscale(0) blur(0);
-	  filter: grayscale(0) blur(0);
-	  -webkit-transition: .3s ease-in-out;
-	  transition: .3s ease-in-out;
-  }
-  #figura:hover{
-	  -webkit-filter: grayscale(100%) blur(3px);
-	  filter: grayscale(100%) blur(3px);
-  }
-  
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* --------------------------------SENTICTION 6- CONTATO-------------------------------------------- */
-  #section6 {
-	background-color: #6D69A5;
-  }
-  
-  /* -------FORMULARIO---------- */
-  
-  .clearfix:after {
-	  content: "";
-	  display: block;
-	  clear: both;
-	  visibility: hidden;
-	  height: 0;
-  }
-  
-  .form_wrapper {
-	  background: rgba(55, 37, 121, 0.72);
-	  width: 50%;
-	  /* max-width:100%; */
-	  /* box-sizing:border-box; */
-	  padding:16px;
-	  margin: 0 auto;
-	  margin-bottom: 100px;
-	  /* bottom: 75px; */
-	  position:relative;
-	  /* z-index: 1; */
-	  -webkit-box-shadow:0 23px 4px -21px rgba(0, 0, 0, 0.9);
-	  -moz-box-shadow:0 23px 4px -21px rgba(0, 0, 0, 0.9);
-	  box-shadow:0 23px 4px -21px rgba(0, 0, 0, 0.9);
-  }
-  
-  .form_container {
-	  padding:15px;
-	  border:1px dashed #ECC334;
-	border-radius: 5%;
-  }
-  .form_wrapper h2 {
-	  font-size:1.5em;
-	  line-height:1.5em;
-	  margin:0;
-  }
-  .form_wrapper .title_container {
-	  text-align:center;
-	font-family:"Barrio";
-	color: #ECC334;
-	  margin:-15px -15px 15px;
-	  padding:15px 0;
-	  border-bottom:1px dashed #ECC334;
-  }
-  .form_wrapper h3 {
-	font-family:"Ubuntu";
-	  font-size: 20px;
-	  font-weight: 100;
-	  line-height:1.5em;
-	  margin:0;
-  }
-  .form_wrapper .row {
-	  margin:10px -15px;
-  }
-  .form_wrapper .row > div {
-	  padding:0 15px;
-	  box-sizing:border-box;
-  }
-  .form_wrapper .col_half {
-	  width:50%;
-	  float:left;
-  }
-  .form_wrapper label {
-	font-family:"Ubuntu";
-	color: #ECC334;
-	  display:block;
-	  margin: 8px;
-  }
-  .form_wrapper .input_field, .form_wrapper .textarea_field {
-	  position:relative;
-  }
-  .form_wrapper .input_field > span, .form_wrapper .textarea_field > span {
-	font-family:"Ubuntu";
-	position:absolute;
-	  left:0;
-	  top:0;
-	  color: #372578;
-	  height:100%;
-	  text-align:center;
-	  width:30px;
-  }
-  .form_wrapper .textarea_field > span {
-	  max-height: 80px;
-  }
-  .form_wrapper .input_field > span > i, .form_wrapper .textarea_field > span > i {
-	  padding-top: 12px;
-  }
-  .form_wrapper input[type="text"], .form_wrapper input[type="email"], .form_wrapper input[type="tel"], textarea {
-	  width:100%;
-	  padding:10px 10px 10px 35px;
-	  border:1px solid #ECC334;
-	  box-sizing:border-box;
-	  outline:none;
-	  -webkit-transition: all 0.30s ease-in-out;
-	  -moz-transition: all 0.30s ease-in-out;
-	  -ms-transition: all 0.30s ease-in-out;
-	  transition: all 0.30s ease-in-out;
-  }
-  .form_wrapper textarea {
-	  height: 12em;
-  }
-  .form_wrapper input[type="text"]:focus, .form_wrapper input[type="email"]:focus, .form_wrapper input[type="tel"]:focus, textarea:focus {
-	  -webkit-box-shadow:0 0 2px 1px rgba(236, 196, 50, 0.59);
-	  -moz-box-shadow:0 0 2px 1px rgba(236, 196, 50, 0.59);
-	  box-shadow:0 0 2px 1px rgba(236, 196, 50, 0.59);
-	  border:1px solid #ECC334;
-  }
-  
-  .credit{
-	  position:relative;
-	  z-index:1;
-	  text-align:center;
-	  padding:15px;
-	  color:#ecc432;	
-  }
-  .credit a{
-	  color: #ecc432;	
-  }
-  
-  .btt-submit{
-	font-family: "Barrio";
-	color: #ecc432;
-	font-size: 20px;
-	display:flex;
-   margin:0 auto;
-  }
-  
-	  h1{font-size: 2em; padding: 20px 0;}
-	  p{
-		font-size: 12px;
-		font-weight: 100;
-		text-transform: uppercase;
-		letter-spacing: 2px;
-		padding: 20px 0;
-	  }
-  
-	  button:hover{cursor: pointer}
-	  button {
-		background: transparent;
-		outline: none;
-		position: relative;
-		border: 1px solid #ECC334;
-		/* padding: 15px 50px; */
-		overflow: hidden;
-	  }
-  
-	  /*button:before (attr data-hover)*/
-	  button:hover:before{opacity: 1; transform: translate(0,0);}
-	  button:before{
-		content: attr(data-hover);
-		position: absolute;
-		top: 1.1em; left: 0;
-		width: 100%;
-		text-transform: uppercase;
-		letter-spacing: 3px;
-		font-weight: 800;
-		font-size: .8em;
-		opacity: 0;
-		transform: translate(-100%,0);
-		transition: all .3s ease-in-out;
-	  }
-		/*button div (button text before hover)*/
-		button:hover div{opacity: 0; transform: translate(100%,0)}
-		button div{
-		  text-transform: uppercase;
-		  letter-spacing: 2px;
-		  font-weight: 800;
-		  font-size: .8em;
-		  transition: all .3s ease-in-out;
+	@include transform-origin(right bottom);
+	@include transform(scale(0));
+	@include transition-property(transform);
+	@include transition-duration(.2s);
+	@include border-radius;
+	background-color: rgba($color-4, .9);
+
+	a {
+		display: block;
+		padding: 1em;
+		border-bottom: 1px solid rgba($color-1, .1);
+
+		span:first-child {
+			display: none;
 		}
-  
-		/* SETA */
-  .seta {
-	max-width: 100%;
+
+		&.is-selected span:last-child {
+			color: $color-3;
+		}
+	}
+	
+	&.open {
+		@include transform(scale(1));
+	}
+
+	&.open + .cd-nav-trigger {
+		background-color: transparent;
+		
+		span {
+			background-color: rgba($color-1, 0);	
+		}
+
+		span::before, span::after {
+			background-color: rgba($color-1, 1);
+			height: 3px;
+			width: 20px;
+			border-radius: 0;
+			left: -8px;
+		}
+
+		span::before {
+			@include transform(rotate(45deg));
+			top: 1px;
+		}
+
+		span::after {
+			@include transform(rotate(135deg));
+			bottom: 0;
+		}
+	}
+
+	li:last-child a {
+		border-bottom: none;
+	}
+}
+
+@include MQ(M) {
+	.touch .cd-nav-trigger, .touch #cd-vertical-nav {
+		bottom: 40px;
+	}
+}
+
+
+
+/// Grid system
+//
+// Generate semantic grid columns with these mixins.
+
+@mixin make-container() {
+	width: 100%;
+	padding-right: ($grid-gutter-width / 2);
+	padding-left: ($grid-gutter-width / 2);
+	margin-right: auto;
+	margin-left: auto;
   }
   
-  .cd-scroll-up {
-	position: absolute;
-	left: 50%;
-	right: auto;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	bottom: 20px;
-	width: 38px;
-	height: 44px;
+  
+  // For each breakpoint, define the maximum width of the container in a media query
+  @mixin make-container-max-widths($max-widths: $container-max-widths, $breakpoints: $grid-breakpoints) {
+	@each $breakpoint, $container-max-width in $max-widths {
+	  @include media-breakpoint-up($breakpoint, $breakpoints) {
+		max-width: $container-max-width;
+	  }
+	}
   }
   
-  
-  /* --------------------------------------------------------------------------------------------- */ 
-  
-  /* -----------------------------------------FOOTER----------------------------------------------- */
-  
-  
-  footer {
-	color: #FDE7EF;
-	font-family: "Ubuntu";
-  }
-  
-  footer h3 {
-	font-weight: 600;
-	font-size: 25px;
-	margin-bottom: 30px;
-	font-size: bold;
-  }
-  
-  footer .footer-above {
-	padding-top: 50px;
-	background-color: #372578;
-  }
-  
-  footer .footer-col {
-	margin-bottom: 25px;
-  }
-  
-  footer .footer-below {
-	padding: 14px 0;
-	background-color: #30206b;
-  }
-  
-  .social-media{
+  @mixin make-row() {
 	display: flex;
-	margin: 0 auto;
-	text-align:  center;
+	flex-wrap: wrap;
+	margin-right: ($grid-gutter-width / -2);
+	margin-left: ($grid-gutter-width / -2);
   }
   
-  .marca-jo{
-	width: 50px;
+  @mixin make-col-ready() {
+	position: relative;
+	// Prevent columns from becoming too narrow when at smaller grid tiers by
+	// always setting `width: 100%;`. This works because we use `flex` values
+	// later on to override this initial width.
+	width: 100%;
+	min-height: 1px; // Prevent collapsing
+	padding-right: ($grid-gutter-width / 2);
+	padding-left: ($grid-gutter-width / 2);
   }
   
-  .wrapper{
-	display: flex;
-  
+  @mixin make-col($size, $columns: $grid-columns) {
+	flex: 0 0 percentage($size / $columns);
+	// Add a `max-width` to ensure content within each column does not blow out
+	// the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+	// do not appear to require this.
+	max-width: percentage($size / $columns);
   }
   
-  .wrapper ul {
-	list-style: none;
+  @mixin make-col-offset($size, $columns: $grid-columns) {
+	$num: $size / $columns;
+	margin-left: if($num == 0, 0, percentage($num));
   }
-  
-  /* Style the list items inside the UL list, by setting its width, height and line-height 
-	and float them to left and set its border and border-radius.
-   */
-  .wrapper ul li {
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-	margin: 0 5px;
-	text-align: center;
-	cursor: pointer;
-	border-radius: 50%;
-	border: 1px solid #FDE7EF;
-	float: left;
-	transition: all 0.5s ease;
-  }
-  
-  /* Style the icons by setting its color and margin-top value to 20px 
-  to align it properly */
-  .wrapper ul li .fa {
-	color: #FDE7EF;
-	margin-top: 8px;
-	transition: all 0.5s ease;
-  }
-  
-  /* Now target the specific li classes for styling and use box-shadow effect to border and text-shadow effect
-	to icons for glowing effect and use transition property for smooth transition effect. */
-  /*facebook*/
-  .wrapper ul li:hover.facebook {
-	border: 5px solid #FDE7EF;
-	box-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  .wrapper ul li:hover .fa-facebook {
-	color: #FDE7EF;
-	text-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  /*facebook*/
-  .wrapper ul li:hover.youtube {
-	border: 5px solid #FDE7EF;
-	box-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  .wrapper ul li:hover .fa-youtube {
-	color: #FDE7EF;
-	text-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  
-  
-  /* medium */
-  .wrapper ul li:hover.medium{
-	border: 5px solid #FDE7EF;
-	box-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  .wrapper ul li:hover .fa-medium {
-	color: #FDE7EF;
-	text-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  /* google */
-  .wrapper ul li:hover.google {
-	border: 5px solid #FDE7EF;
-	box-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  .wrapper ul li:hover .fa-google {
-	color: #FDE7EF;
-	text-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  /* whatsapp */
-  .wrapper ul li:hover.whatsapp {
-	border: 5px solid #FDE7EF;
-	box-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  .wrapper ul li:hover .fa-whatsapp {
-	color: #FDE7EF;
-	text-shadow: 0 0 15px #FDE7EF;
-	transition: all 0.5s ease;
-  }
-  
-  
-  
-  
-  
+

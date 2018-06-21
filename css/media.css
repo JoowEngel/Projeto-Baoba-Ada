@@ -3,11 +3,21 @@
 /* BRAND */
 
 
-  @media screen and (min-width: 1000px) {
+@media screen and (min-width: 1000px) {
     .brand {
       width: calc( 90% / 3);
     }
+    .btt-titulo{
+        font-weight: 200;
+        font-size: 25px;
+        padding-top: 18%;
+
+      }
+
+
   }
+
+
 
 /* -------------------------- */
 
@@ -82,16 +92,15 @@
   /* TABLET */
 
   @media screen and (min-width: 600px) {
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: row;
-      align-items:  center;
-      justify-content:  center;
-      box-sizing: border-box;
+    .grid-fluid {
+        display: inline-flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
     }
     .cell {
-      width: calc(50% - 2rem);
+      width: calc(30% - 1rem);
     }
   }
 
@@ -99,7 +108,7 @@
   
   @media screen and (min-width: 1000px) {
     .cell {
-      width: calc( 50% / 3);
+      width: calc( 50% / 5);
     }
   }
 

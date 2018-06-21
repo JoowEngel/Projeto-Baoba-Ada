@@ -1,0 +1,113 @@
+
+
+.tabs{
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	-webkit-transform: translateY(5px);
+	transform: translateY(5px);
+	
+	>li{
+		transition-duration: .25s;
+		display: table-cell;
+		list-style: none;
+		text-align: center;
+		padding: 20px 20px 25px 20px;
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+		color: white;
+		
+		&:before{
+			z-index: -1;
+			position: absolute;
+			content: "";
+			width: 100%;
+			height: 120%;
+			top: 0;
+			left: 0;
+			background-color: rgba(255, 255, 255, .3);
+			-webkit-transform: translateY(100%);
+			transform: translateY(100%);
+			transition-duration: .25s;
+			border-radius: 5px 5px 0 0;
+		}
+		
+		&:hover{
+			&:before{
+				-webkit-transform: translateY(70%);
+				transform: translateY(70%);
+			}
+		}
+		
+		&.active{
+			color: #E83B35;
+			
+			&:before{
+				transition-duration: .5s;
+				background-color: white;
+				-webkit-transform: translateY(0);
+				transform: translateY(0);
+			}
+		}
+	}
+}
+
+
+	
+.colors{
+	text-align: center;
+	background-color: transparent;
+	padding-top: 10px;
+	
+	>li{
+		list-style: none;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		border-bottom: 1px solid rgba(0, 0, 0, .1);
+		display: inline-block;
+		margin: 0 10px;
+		cursor: pointer;
+		transition-duration: .2s;
+		box-shadow: 0 1px 0px rgba(0, 0, 0, .2);
+		
+		&:hover{
+			-webkit-transform: scale(1.1);
+			transform: scale(1.1);
+			border-bottom: 2px solid rgba(0, 0, 0, .15);
+			box-shadow: 0 2px 10px rgba(0, 0, 0, .2);
+		}
+		
+		&.active-color{
+			-webkit-transform: scale(1.1) translateY(-5px);
+			transform: scale(1.1) translateY(-5px);
+			box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+			border-bottom: 2px solid rgba(0, 0, 0, .15);
+		}
+		
+		&:nth-child(1){
+			background-color: #E83B35;
+		}
+		
+		&:nth-child(2){
+			background-color: #61B241;
+		}
+		
+		&:nth-child(3){
+			background-color: #6D69A5;
+		}
+		
+		&:nth-child(4){
+			background-color: #ECC334;
+		}
+		
+		&:nth-child(5){
+			background-color: #372578;
+		}
+		
+		&:nth-child(6){
+			background-color: #3D1C14;
+		}
+	}
+}
