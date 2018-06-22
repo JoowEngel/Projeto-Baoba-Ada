@@ -43,10 +43,15 @@ a:hover{
   color: #ECC334;
 }
 
+p{
+  font-family: "Ubuntu";
+  color: #b7a5f8
+}
+
 /* --------------------------------SENTICTIONS------------------------------------------------- */
 
 .cd-section {
-  min-height: 73%;
+  /* min-height: 73%; */
   position: relative;
   padding: 1em 0;
 }
@@ -175,14 +180,14 @@ a:hover{
   justify-content: center;
   /* text-align: center; */
   /* align-items: center; */
-  z-index: 1;
+  z-index: 35;
   position: fixed;
   bottom: 87%;
   right: 5%;
   height: 4em;
   width: 4em;
   border-radius: 7.25em;
-  background: #ffc107;
+  background: #ffc107b8;
 }
 .touch .cd-nav-trigger span {
   position: absolute;
@@ -310,20 +315,15 @@ a:hover{
 /* --------------------------------SENTICTION 1-INTRO-------------------------------------------- */
 
 #section1 {
-  background-image: url("https://cdn.dribbble.com/users/988852/screenshots/3175945/landscape_hills.gif");
+  background-image: url("../img/background-header.gif");
   background-size: cover;
-  background-position:center center ;
+  background-position:center center;
   position: relative;
+  margin: 0 auto;
   background-attachment: fixed;
- 
 }
 
-.mask{
-  background-color:rgba(55, 37, 120, 0.79);
-  height: 100%;
-  width: 100%;
-  position:absolute;
-}
+
 
 
 
@@ -409,20 +409,63 @@ span{
 /* --------------------------------SENTICTION 2-PROJETO------------------------------------------ */
 
 #section2 {
-  background-image: url("../imgs/bg.projeto.png");
-  background-size: cover;
-  background-position:center center ;
-  position: relative;
-  background-attachment: fixed;
- 
-}
+  background-color: #372578}
 
-.yellowmask{
-  background-color:rgba(236, 196, 50, 0.7);
-  height: 100%;
-  width: 100%;
-  position:absolute;
-}
+  .txt-sobre{
+    display: inline;
+    width:100%;
+    margin:0 auto;
+    align-items:center;
+    text-align:center;
+    font-family:"Ubuntu";
+    color:#FDE7EF;
+    font-weight: 100;
+    justify-content:center;
+    font-space: 20px;
+  }
+  
+  #txt-projeto {
+      font: 600 1.5em/1 'Barrio', sans-serif;
+      color: #ECC334;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: .5em;
+      /* position: absolute; */
+      /* top: 25%; */
+      /* width: 100%; */
+  }
+  
+  #t-projeto, t-projeto:after {
+      font-weight: 600;
+      color: #FDE7EF;
+      /* white-space: nowrap; */
+      display: inline-flex;
+      position: relative;
+      letter-spacing: .1em;
+      font-size: 213%;
+      text-align:  center;
+      padding: .2em 0 .25em 0;
+  }
+  
+  #t-projeto {
+      /* font-size: 222%; */
+      /* z-index: 100; */
+      text-shadow: .04em .04em 0 #1d104b;
+  }
+  
+  #t-projeto:after {
+      content: attr(data-shadow-text);
+      color: rgba(0,0,0,.35);
+      text-shadow: none;
+      position: absolute;
+      left: .0875em;
+      top: .0875em;
+      z-index: -1;
+      -webkit-mask-image: url(https://f.cl.ly/items/1t1C0W3y040g1J172r3h/mask.png);
+  }
+
+
+
 
 
 /* --------------------------------------------------------------------------------------------- */ 
@@ -430,12 +473,84 @@ span{
 /* -------------------------SENTICTION 3-MULHERES DA HISTÓRIA----------------------------------- */
 
 #section3 {
-  background-image: url("../img/bg.mulheres.png");
+  background-image: url("../img/bg.background-2.png");
   background-size: cover;
-  background-position:center center ;
+  background-position:center center;
+  /* position: relative; */
+  /* background-attachment: fixed; */
+}
+#menu-sectionm {
+  list-style-type: none;
+  margin: 15%;
+  font-family: "Barrio";
+  text-align: center;
+  margin-top: 16%;
+  padding:  12px;
+}
+
+#menu-sectionm li{
+  display: inline-block;
+  margin: 0 20px;
+}
+
+.menu-hq {
+  font-size: 20px;
+  color: #ECC334;
   position: relative;
-  background-attachment: fixed;
- 
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-bottom: 8px;
+}
+
+.menu-hq:before,
+.menu-hq:after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #E83B35;
+}
+
+.menu-hq:before {
+  opacity: 0;
+  -webkit-transform: translateY(-8px);
+  -ms-transform: translateY(-8px);
+  transform: translateY(-8px);
+  -webkit-transition: -webkit-transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+  transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+}
+
+.menu-hq:after {
+  opacity: 0;
+  -webkit-transform: translateY(4px);
+  -ms-transform: translateY(4px);
+  transform: translateY(4px);
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.menu-hq:hover:before,
+.menu-hq:hover:after,
+.menu-hq:focus:before,
+.menu-hq:focus:after {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.menu-hq:hover:before,
+.menu-hq:focus:before {
+  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.menu-hq:hover:after,
+.menu-hq:focus:after {
+  -webkit-transition: -webkit-transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
+  transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
 }
 
 
@@ -444,142 +559,172 @@ span{
 /* --------------------------------SENTICTION 4-IDEALIZADORAS----------------------------------- */
 
 #section4 {
-  background-color: #61B241;
-  position:relative;
+background-color: #372578
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:900,300);
+body {
+  background-color: #f0f0f0;
+  font-family: roboto;
+}
+#cardcassia {
+  width: 363px;
+  margin: 89px auto;
+  background-color: #37257872;
+  /* padding: 0 20px 20px; */
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+  text-align: center;
+}
+
+#cardcassia:hover .avatar-flip {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+}
+#cardcassia:hover .avatar-flip img:first-child {
+  opacity: 0;
+}
+#cardcassia:hover .avatar-flip img:last-child {
+  opacity: 1;
+}
+.avatar-flip {
+  border-radius: 100px;
+  overflow: hidden;
+  height: 150px;
+  width: 150px;
+  position: relative;
+  margin: auto;
+  top: -60px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  box-shadow: 0 0 0 13px #f0f0f0;
+  -webkit-box-shadow: 0 0 0 13px #f0f0f0;
+  -moz-box-shadow: 0 0 0 13px #f0f0f0;
+}
+.avatar-flip img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 100px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+}
+.avatar-flip img:first-child {
+  z-index: 1;
+}
+.avatar-flip img:last-child {
+  z-index: 0;
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  opacity: 0;
+}
+h2 {
+  font-family: "Barrio";
+  font-size: 34px;
+  font-weight: 600;
+  margin-bottom: 18px;
+  color: #ecc334;
+}
+h4 {
+  font-family: "Ubuntu";
+  font-size: 24px;
+
+  color:#61B241;
+ 
+  letter-spacing: 3px;
+  margin-bottom: 45px;
+}
+p {
+  font-family: "Ubuntu";
+  font-size: 87%;
+  line-height: 15px;
+  margin-bottom: 62px;
+  color: #6D69A5;
+}
+
+.apresentacao{
+  text-align: center;
+    font-size: 80%;
+    margin-top: 1px;
+    letter-spacing: 3px;
+    padding: 0px 33px;
+   
+    color:#8bee64;
+   
+}
+
+.pensamento{
+
+  font-family: "Ubuntu";
+  font-size: 50%;
+  color: #FDE7EF;
+
+}
+
+
+
+
+/* --------------------------------------------------------------------------------------------- */ 
+
+
+/* --------------------------------SENTICTION 5-GALERIA-------------------------------------------- */
+
+#section5 {
+  /* background-color: #61B241; */
+  position: unset;
   background: linear-gradient(90deg, #61B241, #6D69A5, #372578);
   background-size: 200% 200%;
   -webkit-animation:   AnimationName 10s ease infinite;
   -moz-animation: AnimationName 10s ease infinite;
   animation: AnimationName 10s ease infinite;
   display: flex;
-}
-
-.perfil{
-  width: 90%;
-  /* text-align: center; */
-  justify-content:  center;
-  align-items:  center;
-  display: inline-flex;
-  margin:0 auto;
-}
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-@keyframes AnimationName { 
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
-}
-
-
-
-.cards{
-  width:80%;
-  position:relative;
-  margin-left:auto;
-  margin-right:auto;
-  padding-bottom:200px;
-  display:flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  
-}
-
-.card{
-  /* width: 142%; */
-  height: 376px;
-  position: relative;
-  background-color: #61B241;
-  margin: 1.13%;
-  border-radius: 15px;
-  transition: 1s;
-  -webkit-transition: 0.5s;
-  cursor: pointer;
-  flex: 1 1 auto;
-}
-
-
-.card:hover{
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
-}
-
-
-.card_img{
-  width: 42%;
-  height: 100%;
-  position: relative;
-  border-radius: 8px 8px;
-  background-size: cover;
-  background-position:center center;
-  background-color: #20e6b3;
-  transition:1s;
-  -webkit-transition:1s;
-}
-
-.card1{
-  background-image: url("../img/cassia.jpg");
-  background-repeat: no-repeat;
-  background-size: 210%;
-  display: grid;
-}
-.card2{
-  
-  background-image: url("../img/thais.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  
-}
-
-
-
-/* --------------------------------------------------------------------------------------------- */ 
-
-/* --------------------------------SENTICTION 5-GALERIA-------------------------------------------- */
-
-#section5 {
-  background-image: url("../img/bg.galeria.png");
-  background-size: cover;
-  background-position:center center ;
-  position: relative;
-  background-attachment: fixed;
- 
+  margin:  0 auto;
 }
 /* GALERIA */
 
-.container-fluid{
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-.responsive-image {
-  max-width: 100%;
-}
-
-.cell {
-  margin: 5px;
-}
-
-#figura{
-	-webkit-filter: grayscale(0) blur(0);
-	filter: grayscale(0) blur(0);
-	-webkit-transition: .3s ease-in-out;
-	transition: .3s ease-in-out;
-}
-#figura:hover{
-	-webkit-filter: grayscale(100%) blur(3px);
-	filter: grayscale(100%) blur(3px);
+#gallery img {
+  -webkit-filter: grayscale(100%) drop-shadow(5px 5px 5px rgba(55, 37, 120, 0.556))
 }
 
 
+.grid {
+      list-style:none;
+      overflow: hidden;
+  		padding: 0.2em 0 0 0.2em;
+			max-width: 50em;
+			margin: 0 auto;
+		}
+		.grid li {
+			padding: 0 0.5em 0.5em 0;
+		}
+		.grid li > img {
+      display:block;
+      max-width:100%;
+			background: #808080;
+			text-align: center;
+		}
+		
+		@media all and (min-width: 27em) {
+			.grid li {
+				width: 50%;
+				float: left;
+			}
+		}
+		
+		@media all and (min-width: 40em) {
+			.grid li {
+				width: 33.3333333%;
+			}
+			.grid li.wide {
+				width: 66.666666%;
+			}
+		}
 /* --------------------------------------------------------------------------------------------- */ 
 
 /* --------------------------------SENTICTION 6- CONTATO-------------------------------------------- */
@@ -719,12 +864,18 @@ span{
 }
 
     h1{font-size: 2em;padding: 10px 0;}
-    p{
-      font-size: 12px;
+    #projeto{
+      font-size: 101%;
+      text-align: -webkit-match-parent;
       font-weight: 100;
-      text-transform: uppercase;
+      text-transform:;
+      margin-top: 32px;
       letter-spacing: 2px;
-      padding: 20px 0;
+      padding: 2px 22px;
+      color: #a391e4;
+      font-stretch: 287px;
+      /* font-kerning: 309px; */
+      /* letter-spacing: 5px; */
     }
 
     button:hover{cursor: pointer}
@@ -795,17 +946,22 @@ footer {
 footer h3 {
   font-weight: 600;
   font-size: 25px;
-  margin-bottom: 30px;
+  margin-bottom: 31px;
   font-size: bold;
 }
 
 footer .footer-above {
   padding-top: 50px;
-  background-color: #372578;
+  background-color:#372578
+/*   background: 
+    linear-gradient(to bottom, transparent, #372578) 
+      no-repeat bottom;
+  background-size: 100% 80%;
+  height: 30em; */
 }
 
 footer .footer-col {
-  margin-bottom: 25px;
+  margin-bottom: 28px;
 }
 
 footer .footer-below {
@@ -843,7 +999,7 @@ footer .footer-below {
   text-align: center;
   cursor: pointer;
   border-radius: 50%;
-  border: 1px solid #FDE7EF;
+  border: 1px solid #b7a5f8;
   float: left;
   transition: all 0.5s ease;
 }
@@ -851,7 +1007,7 @@ footer .footer-below {
 /* Style the icons by setting its color and margin-top value to 20px 
 to align it properly */
 .wrapper ul li .fa {
-  color: #FDE7EF;
+  color: #b7a5f8;
   margin-top: 8px;
   transition: all 0.5s ease;
 }
